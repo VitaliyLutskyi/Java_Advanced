@@ -1,7 +1,9 @@
 package service.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.List;
+import org.apache.log4j.Logger;
 import dao.BucketDAO;
 import dao.impl.BucketDAOImpl;
 import domain.Bucket;
@@ -9,14 +11,24 @@ import service.BucketService;
 
 public class BucketServiceImpl implements BucketService{
 	
+	private static Logger LOGGER = Logger.getLogger(BucketServiceImpl.class);
+	
 	private BucketDAO bucketDAO;
-
-	public BucketServiceImpl() {
+	private static BucketService bucketServiceImpl;
+	
+	private BucketServiceImpl() {
 		try {
 			bucketDAO = new BucketDAOImpl();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException | ClassNotFoundException | SQLException e) {
+			LOGGER.error(e);
 		}
+	}
+	
+	public static BucketService getBucketService() {
+		if(bucketServiceImpl == null)
+			bucketServiceImpl = new BucketServiceImpl();
+		return bucketServiceImpl;
 	}
 
 	@Override
@@ -36,7 +48,11 @@ public class BucketServiceImpl implements BucketService{
 
 	@Override
 	public void update(Bucket t) {
-		bucketDAO.update(t);
+		try {
+			bucketDAO.update(t);
+		} catch (IllegalStateException e) {
+			LOGGER.error(e);
+		}
 	}
 
 	@Override

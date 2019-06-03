@@ -4,13 +4,13 @@ public class User {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private int age;
+	private Integer age;
 	private String address;
 	private String eMail;
 	private String password;
+	private String role;
 	
-	public User(int id, String firstName, String lastName, int age, String address, String eMail, String password) {
-		super();
+	public User(int id, String firstName, String lastName, Integer age, String address, String eMail, String password, String role) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -18,15 +18,17 @@ public class User {
 		this.address = address;
 		this.eMail = eMail;
 		this.password = password;
+		this.role = role;
 	}
 
-	public User(String firstName, String lastName, int age, String address, String eMail, String password) {
+	public User(String firstName, String lastName, Integer age, String address, String eMail, String password, String role) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
 		this.address = address;
 		this.eMail = eMail;
 		this.password = password;
+		this.role = role;
 	}
 
 	public int getId() {
@@ -41,7 +43,7 @@ public class User {
 		return lastName;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
@@ -57,6 +59,10 @@ public class User {
 		return password;
 	}
 	
+	public String getRole() {
+		return role;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -64,7 +70,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", address="
-				+ address + ", eMail=" + eMail + ", password=" + password + "]";
+				+ address + ", eMail=" + eMail + ", password=" + password + ", role=" + role + "]";
 	}
 
 }

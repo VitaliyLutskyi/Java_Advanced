@@ -1,5 +1,6 @@
 package dao.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,6 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import dao.BucketDAO;
 import domain.Bucket;
 import utils.ConnectionUtils;
@@ -22,7 +26,9 @@ public class BucketDAOImpl implements BucketDAO{
 	private Connection connection;
 	private PreparedStatement preparedStatement;
 	
-	public BucketDAOImpl() throws SQLException {
+	private static Logger LOGGER = Logger.getLogger(BucketDAOImpl.class);
+	
+	public BucketDAOImpl() throws SQLException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
 		connection = ConnectionUtils.connect();
 	}
 
@@ -39,7 +45,7 @@ public class BucketDAOImpl implements BucketDAO{
 			rs.next();
 			bucket.setId(rs.getInt(1));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		
 		return bucket;
@@ -59,7 +65,7 @@ public class BucketDAOImpl implements BucketDAO{
 			Date purchaseDate = result.getDate("purchase_date");
 			bucket = new Bucket(id, userId, magazineId, purchaseDate);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}		
 		
 		return bucket;
@@ -78,7 +84,7 @@ public class BucketDAOImpl implements BucketDAO{
 				bucketRecords.add(new Bucket(id, userId, magazineId, purchaseDate));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}	
 		
 		return bucketRecords;
@@ -96,7 +102,7 @@ public class BucketDAOImpl implements BucketDAO{
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}	
 	}
 

@@ -1,5 +1,6 @@
 package dao.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import dao.MagazineDAO;
 import domain.Magazine;
 import utils.ConnectionUtils;
@@ -21,8 +25,10 @@ public class MagazineDAOImpl implements MagazineDAO{
 	
 	private Connection connection;
 	private PreparedStatement preparedStatement;
+	
+	private static Logger LOGGER = Logger.getLogger(MagazineDAOImpl.class);
 
-	public MagazineDAOImpl() throws SQLException {
+	public MagazineDAOImpl() throws SQLException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
 		connection = ConnectionUtils.connect();
 	}
 
@@ -40,7 +46,7 @@ public class MagazineDAOImpl implements MagazineDAO{
 			rs.next();
 			magazine.setId(rs.getInt(1));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 		
 		return magazine;
@@ -61,7 +67,7 @@ public class MagazineDAOImpl implements MagazineDAO{
 			int stockQuantity = result.getInt("stock_quantity");
 			magazine = new Magazine(id, name, description, price, stockQuantity);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}		
 		
 		return magazine;
@@ -81,7 +87,7 @@ public class MagazineDAOImpl implements MagazineDAO{
 				listOfMagazines.add(new Magazine(id, name, description, price, stockQuantity));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}	
 		
 		return listOfMagazines;
@@ -98,7 +104,7 @@ public class MagazineDAOImpl implements MagazineDAO{
 			preparedStatement.setInt(5, magazine.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}
 	}
 
@@ -109,7 +115,7 @@ public class MagazineDAOImpl implements MagazineDAO{
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.error(e);
 		}	
 	}
 
