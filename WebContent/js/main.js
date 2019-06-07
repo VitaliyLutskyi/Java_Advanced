@@ -13,11 +13,10 @@ $(document).ready(function() {
 				url : "login",
 				data : userLog,
 				success : function(response) {
-					
-						$("form")[0].reset();
-						alert(response);
-					
-					
+						if (response != '')
+							window.location = response.destinationUrl;
+						else
+							$("form")[0].reset();					
 				}
 			});
 		}
@@ -49,10 +48,10 @@ $(document).ready(function() {
 				url : "registration",
 				data : userReg,
 				success : function(response) {
-					
+					if (response != '')
+						window.location = response.destinationUrl;
+					else
 						$("form")[0].reset();
-						alert(response);
-					
 				}
 			});
 		}

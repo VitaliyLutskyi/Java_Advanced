@@ -1,0 +1,55 @@
+package servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import domain.Magazine;
+import service.MagazineService;
+import service.impl.MagazineServiceImpl;
+
+@WebServlet("/magazine")
+public class MagazineController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private MagazineService magazineService = MagazineServiceImpl.getMagazineService();
+    
+    // create magazine
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String description = request.getParameter("description");
+		Double price = request.getParameter("price").isEmpty() ? null : Double.parseDouble(request.getParameter("price"));
+		Integer stockQuantity = request.getParameter("stock_quantity").isEmpty() ? null : Integer.parseInt(request.getParameter("stock_quantity"));
+		
+		if (!name.isEmpty() && !description.isEmpty() && (price != null) && (stockQuantity != null)) {
+			magazineService.create(new Magazine(name, description, price, stockQuantity));
+			
+			response.setContentType("text");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write("cabinet.jsp");
+		}
+	}
+	
+	// read magazine
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+	
+	// update magazine
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doPut(req, resp);
+	}
+	
+	// delete magazine
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doDelete(req, resp);
+	}
+
+}
