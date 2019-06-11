@@ -1,0 +1,7 @@
+2019-06-09 16:06:22 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-09 16:06:32 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-09 16:06:35 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-10 13:08:44 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-11 11:54:37 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-11 13:20:53 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-11 13:21:20 ERROR BucketDAOImpl:48 - java.sql.SQLException: Field 'id' doesn't have a default value
