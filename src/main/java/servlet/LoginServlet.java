@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -23,7 +24,9 @@ public class LoginServlet extends HttpServlet {
 		User user = userService.readByEmail(eMail);
 		
 		if(user != null && user.getPassword().equals(password)) {
-			
+			HttpSession session = request.getSession(true);
+			session.setAttribute("userId", user.getId());
+
 			String json = new Gson().toJson(new UserDto(user.getFirstName(), user.getLastName(), "cabinet.jsp"));
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");

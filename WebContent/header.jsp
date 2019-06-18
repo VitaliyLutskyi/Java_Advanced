@@ -28,7 +28,7 @@
 
 
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="#">Home</a></li>
+				<li class="active"><a href="cabinet.jsp">Home</a></li>
 				<li><a href="#">About Us</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Services <b class="caret"></b></a>
@@ -56,5 +56,5 @@
 	</div>
 	<!-- /.container-collapse -->
 </nav>
-<script src="js/header.js"></script>
-
+<script src="js/serverCalls.js"></script>
+<script src="js/cabinet.js"></script>

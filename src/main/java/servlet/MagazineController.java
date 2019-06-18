@@ -34,8 +34,10 @@ public class MagazineController extends HttpServlet {
 	
 	// read magazine
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int id = Integer.parseInt(request.getParameter("id"));
+		Magazine magazine = magazineService.read(id);
+		request.setAttribute("magazine", magazine);
+		request.getRequestDispatcher("singleMagazine.jsp").forward(request, response);
 	}
 	
 	// update magazine

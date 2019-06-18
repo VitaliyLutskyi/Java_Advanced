@@ -63,7 +63,7 @@
     
     <!-- JS -->
  <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="js/createProduct.js"></script>
+    <script src="js/serverCalls.js"></script>
     
 </body>
 </html>

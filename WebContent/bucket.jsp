@@ -2,14 +2,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Creating magazine</title>
+<title>Bucket</title>
 </head>
 <body>
 
 	<jsp:include page="header.jsp"></jsp:include>
-<br><br><br><br><br>
+
+<div class="container">
 	<h3 style="color:black">Bucket</h3>
-<br><br><br><br><br>
+	</div>
+
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

@@ -118,7 +118,7 @@ body{
     height: 100%;
 }
 
-.content{
+.container{
    flex: 1 0 auto;
    -webkit-flex: 1 0 auto;
    min-height: 200px;

@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -30,7 +31,10 @@ public class RegistrationServlet extends HttpServlet {
 		String role = UserRole.USER.toString();
 		
 		if (!firstName.isEmpty() && !lastName.isEmpty() && !eMail.isEmpty() && !password.isEmpty() && !role.isEmpty() && age != null) {
-			userservice.create(new User(firstName, lastName, age, address, eMail, password, role));
+			User user = userservice.create(new User(firstName, lastName, age, address, eMail, password, role));
+			
+			HttpSession session = request.getSession(true);
+			session.setAttribute("userId", user.getId());
 			
 			String json = new Gson().toJson(new UserDto(firstName, lastName, "cabinet.jsp"));
 		    response.setContentType("application/json");

@@ -1,14 +1,7 @@
-2019-06-07 11:17:21 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 13:14:00 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 13:16:01 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 13:17:53 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 13:21:30 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 13:27:42 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 13:28:30 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 13:29:54 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 13:45:25 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 13:47:07 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 14:16:20 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 14:16:26 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-07 14:16:53 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
-2019-06-09 16:02:37 ERROR UserServiceImpl:24 - java.sql.SQLException: The server time zone value '????????? (????)' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+2019-06-09 16:06:22 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-09 16:06:32 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-09 16:06:35 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-10 13:08:44 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-11 11:54:37 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-11 13:20:53 ERROR UserDAOImpl:104 - java.sql.SQLException: Illegal operation on empty result set.
+2019-06-11 13:21:20 ERROR BucketDAOImpl:48 - java.sql.SQLException: Field 'id' doesn't have a default value

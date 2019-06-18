@@ -135,7 +135,7 @@
     color:#fff;
 }
 /* Buttons */
-.site-btn {
+div .site-btn {
     font-size: 14px;
     padding: 13px 30px;
     border-radius: 5px;
@@ -151,7 +151,7 @@
     margin: 10px 0px 10px 0px;
     
 }
-.site-btn:hover {
+div .site-btn:hover {
     background: #b40028 ;
     border: 1px solid #fff;
     font-weight:700px;
