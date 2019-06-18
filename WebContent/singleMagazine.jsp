@@ -1,3 +1,8 @@
+<style>
+	div.col-sm-6.col-md-3{
+	margin: 0 auto;
+	}
+</style>
 <jsp:include page="header.jsp"></jsp:include>
 
 <div class="Features-section paddingTB60" style="margin-top: 60px">
@@ -7,8 +12,8 @@
 				<div class="col-md-12 feature-box">
 					
 					<h4>${magazine.name}</h4>
-					<h5>${magazine.price}</h5>
-					<h6>${magazine.stockQuantity}</h6>
+					<h5>${magazine.price}$</h5>
+					<h6>In stock ${magazine.stockQuantity}</h6>
 					<p>${magazine.description}</p>
 					<button type="button" class="btn btn-primary site-btn" data-toggle="modal" data-target="#buyMagazineModal">Buy now</button> 
 
@@ -24,9 +29,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        
       </div>
       <div class="modal-body">
         Sure you want to buy it?

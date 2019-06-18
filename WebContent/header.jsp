@@ -28,12 +28,11 @@
 
 
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="cabinet.jsp">Home</a></li>
-				<li><a href="#">About Us</a></li>
+				<li class="active"><a href="index.jsp">Home</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Services <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="createMagazine.jsp">Add magazine</a></li>
+						<li class="admin-only"><a href="createMagazine.jsp">Add magazine</a></li>
 						<li><a href="bucket.jsp">Bucket</a></li>
 						
 						<!-- <li><a href="#">Something else here</a></li>
@@ -43,7 +42,8 @@
 						<li><a href="#">One more separated link</a></li> -->
 						
 					</ul></li>
-				<li><a href="#">Portfolio</a></li>
+				<li style="visibility: hidden"><a href="#">Portfolio</a></li>
+				<li><a class="login" href="login.jsp">Login</a></li>
 				<li><a class="logout" href="#">Logout</a></li>
 
 

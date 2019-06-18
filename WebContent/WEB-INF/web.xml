@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
-  <display-name>Les08</display-name>
+  <display-name>Les10</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -20,4 +20,16 @@
     <servlet-name>registration</servlet-name>
     <url-pattern>/registration</url-pattern>
   </servlet-mapping>
+  <filter>
+    <filter-name>BucketFilter</filter-name>
+    <filter-class>filter.BucketFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>BucketFilter</filter-name>
+    <url-pattern>/bucket.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>BucketFilter</filter-name>
+    <url-pattern>/bucket</url-pattern>
+  </filter-mapping>
 </web-app>

@@ -28,7 +28,7 @@ public class MagazineController extends HttpServlet {
 			
 			response.setContentType("text");
 			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write("cabinet.jsp");
+			response.getWriter().write("index.jsp");
 		}
 	}
 	
@@ -43,15 +43,13 @@ public class MagazineController extends HttpServlet {
 	// update magazine
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPut(req, resp);
+		
 	}
 	
 	// delete magazine
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
+		
 	}
 
 }

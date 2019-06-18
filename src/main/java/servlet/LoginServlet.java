@@ -26,8 +26,9 @@ public class LoginServlet extends HttpServlet {
 		if(user != null && user.getPassword().equals(password)) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("userId", user.getId());
+			session.setAttribute("role", user.getRole());
 
-			String json = new Gson().toJson(new UserDto(user.getFirstName(), user.getLastName(), "cabinet.jsp"));
+			String json = new Gson().toJson(new UserDto(user.getFirstName(), user.getLastName(), "index.jsp"));
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);

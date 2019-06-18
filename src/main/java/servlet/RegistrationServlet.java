@@ -35,8 +35,9 @@ public class RegistrationServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession(true);
 			session.setAttribute("userId", user.getId());
+			session.setAttribute("role", user.getRole());
 			
-			String json = new Gson().toJson(new UserDto(firstName, lastName, "cabinet.jsp"));
+			String json = new Gson().toJson(new UserDto(firstName, lastName, "index.jsp"));
 		    response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
 		    response.getWriter().write(json);

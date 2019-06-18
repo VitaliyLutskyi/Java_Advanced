@@ -36,7 +36,7 @@ $('a.logout').click(function(){
 
 // Add to bucket
 $('button[product-id]').click(function(){
-	debugger;
+	
 	var id = jQuery(this).attr('product-id');
 	
 	$.ajax({
@@ -48,6 +48,28 @@ $('button[product-id]').click(function(){
 	});
 	
 	});
+
+//Delete magazine from bucket
+function deleteRecordFromBucket(bucketId){
+	$.ajax({
+		type : "DELETE",
+		url : "bucket?bucketId=" + bucketId,
+		success : (response) =>	response == 'ok' ? location.reload() : ''
+		
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
