@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.User;
+import domain.UserRole;
 import service.UserService;
 import service.impl.UserServiceImpl;
 
@@ -23,13 +24,17 @@ public class RegistrationServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		String eMail = request.getParameter("eMail");
 		String password = request.getParameter("password");
-		String role = request.getParameter("role");
+		String role = UserRole.USER.toString();
 
 		if (!firstName.isEmpty() && !lastName.isEmpty() && !eMail.isEmpty() && !password.isEmpty() && !role.isEmpty() && age != null) {
 			userservice.create(new User(firstName, lastName, age, address, eMail, password, role));
 			request.setAttribute("firstName", firstName);
 			request.setAttribute("lastName", lastName);
 			request.getRequestDispatcher("cabinet.jsp").forward(request, response);
+			
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write("You are registered!");
 		}
 		else
 			request.getRequestDispatcher("registration.jsp").forward(request, response);

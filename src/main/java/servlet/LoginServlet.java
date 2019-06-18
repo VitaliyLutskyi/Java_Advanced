@@ -25,6 +25,10 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("firstName", user.getFirstName());
 			request.setAttribute("lastName", user.getLastName());
 			request.getRequestDispatcher("cabinet.jsp").forward(request, response);
+			
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write("You are logged in!");
 		}
 	}
 
