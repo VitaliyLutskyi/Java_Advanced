@@ -2,52 +2,71 @@ package domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="bucket")
 public class Bucket {
 	
-	private int id;
-	private int userId;
-	private int magazineId;
+	@Id
+	private String id;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "magazine_id", referencedColumnName = "id")
+	private Magazine magazine;
+	
+	@Column(name="purchase_date")
 	private Date purchaseDate;
 	
-	public Bucket(int id, int userId, int magazineId, Date purchaseDate) {
-		this.id = id;
-		this.userId = userId;
-		this.magazineId = magazineId;
-		this.purchaseDate = purchaseDate;
-	}
+	public Bucket() {}
 
-	public Bucket(int userId, int magazineId, Date purchaseDate) {
-		this.userId = userId;
-		this.magazineId = magazineId;
-		this.purchaseDate = purchaseDate;
-	}
-
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public int getMagazineId() {
-		return magazineId;
+	public Magazine getMagazine() {
+		return magazine;
 	}
 
 	public Date getPurchaseDate() {
 		return purchaseDate;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setMagazine(Magazine magazine) {
+		this.magazine = magazine;
+	}
+
+	public void setPurchaseDate(Date purchaseDate) {
+		this.purchaseDate = purchaseDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Bucket [id=" + id + ", userId=" + userId + ", magazineId=" + magazineId + ", purchaseDate="
-				+ purchaseDate + "]";
+		return "Bucket [id=" + id + ", user=" + user + ", magazine=" + magazine + ", purchaseDate=" + purchaseDate
+				+ "]";
 	}
-	
 	
 	
 }

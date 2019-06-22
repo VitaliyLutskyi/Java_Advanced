@@ -1,9 +1,9 @@
 package service.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
 import java.util.List;
+
 import org.apache.log4j.Logger;
+
 import dao.BucketDAO;
 import dao.impl.BucketDAOImpl;
 import domain.Bucket;
@@ -17,12 +17,7 @@ public class BucketServiceImpl implements BucketService{
 	private static BucketService bucketServiceImpl;
 	
 	private BucketServiceImpl() {
-		try {
 			bucketDAO = new BucketDAOImpl();
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException | ClassNotFoundException | SQLException e) {
-			LOGGER.error(e);
-		}
 	}
 	
 	public static BucketService getBucketService() {

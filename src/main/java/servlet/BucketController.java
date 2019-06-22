@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -16,24 +17,30 @@ import com.google.gson.Gson;
 import domain.Bucket;
 import domain.Magazine;
 import dto.BucketDto;
-
 import service.BucketService;
 import service.MagazineService;
+import service.UserService;
 import service.impl.BucketServiceImpl;
 import service.impl.MagazineServiceImpl;
+import service.impl.UserServiceImpl;
 
 @WebServlet("/bucket")
 public class BucketController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BucketService bucketService = BucketServiceImpl.getBucketService();
 	private MagazineService magazineService = MagazineServiceImpl.getMagazineService();
-       
+    private UserService userService = UserServiceImpl.getUserService();   
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer magazineId = Integer.parseInt( request.getParameter("magazineId"));
 		Integer userId =  (Integer) request.getSession().getAttribute("userId");
+		Bucket bucket = new Bucket();
 		
-		bucketService.create(new Bucket(userId, magazineId, new Date()));
+		bucket.setId(UUID.randomUUID().toString());
+		bucket.setMagazine(magazineService.read(magazineId));
+		bucket.setUser(userService.read(userId));
+		bucket.setPurchaseDate(new Date());
+		bucketService.create(bucket);
 		
 		response.setContentType("text");
 		response.setCharacterEncoding("UTF-8");
@@ -43,7 +50,7 @@ public class BucketController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer userId = (Integer) request.getSession().getAttribute("userId");
-		List<Bucket> bucketList = bucketService.readAll().stream().filter(bucket -> bucket.getUserId() == userId).collect(Collectors.toList());
+		List<Bucket> bucketList = bucketService.readAll().stream().filter(bucket -> bucket.getUser().getId() == userId).collect(Collectors.toList());
 		
 		String json = new Gson().toJson(map(bucketList));
 	    response.setContentType("application/json");
@@ -63,7 +70,7 @@ public class BucketController extends HttpServlet {
 	private List<BucketDto> map(List<Bucket> bucketList){
 		
 		return bucketList.stream().map(bucket -> {
-			Magazine magazine = magazineService.read(bucket.getMagazineId());
+			Magazine magazine = bucket.getMagazine();
 			BucketDto bucketDto = new BucketDto();
 			
 			bucketDto.bucketId = bucket.getId();

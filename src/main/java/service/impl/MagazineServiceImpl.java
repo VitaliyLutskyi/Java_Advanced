@@ -1,10 +1,6 @@
 package service.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
 import java.util.List;
-
-import org.apache.log4j.Logger;
 
 import dao.MagazineDAO;
 import dao.impl.MagazineDAOImpl;
@@ -13,18 +9,11 @@ import service.MagazineService;
 
 public class MagazineServiceImpl implements MagazineService{
 	
-	private static Logger LOGGER = Logger.getLogger(MagazineServiceImpl.class);
-	
 	private MagazineDAO magazineDAO;	
 	private static MagazineService magazineServiceImpl;
 	
 	private MagazineServiceImpl() {
-		try {
 			magazineDAO = new MagazineDAOImpl();
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException | ClassNotFoundException | SQLException e) {
-			LOGGER.error(e);
-		}
 	}
 	
 	public static MagazineService getMagazineService() {

@@ -1,50 +1,28 @@
 package dao.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.apache.log4j.Logger;
 
 import dao.BucketDAO;
 import domain.Bucket;
-import utils.ConnectionUtils;
+import shared.FactoryManager;
 
 public class BucketDAOImpl implements BucketDAO{
-	
-	private static String CREATE = "INSERT INTO bucket (user_id, magazine_id, purchase_date) VALUES (?, ?, ?)";
-	private static String READ_BY_ID = "SELECT * FROM bucket WHERE ID = ?";
-	private static String READ_ALL = "SELECT * FROM bucket";
-	private static String DELETE_BY_ID = "DELETE FROM bucket WHERE id = ?";
-	
-	private Connection connection;
-	private PreparedStatement preparedStatement;
-	
+
+	private static EntityManager em = FactoryManager.getEntityManager();
 	private static Logger LOGGER = Logger.getLogger(BucketDAOImpl.class);
-	
-	public BucketDAOImpl() throws SQLException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
-		connection = ConnectionUtils.connect();
-	}
 
 	@Override
 	public Bucket create(Bucket bucket) {
 		try {
-			preparedStatement = connection.prepareStatement(CREATE, Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, bucket.getUserId());
-			preparedStatement.setInt(2, bucket.getMagazineId());
-			preparedStatement.setDate(3, new Date(bucket.getPurchaseDate().getTime()));
-			preparedStatement.executeUpdate();
-			
-			ResultSet rs = preparedStatement.getGeneratedKeys();
-			rs.next();
-			bucket.setId(rs.getInt(1));
-		} catch (SQLException e) {
+			em.getTransaction().begin();
+			em.persist(bucket);
+			em.getTransaction().commit();
+		} catch (Exception e) {
 			LOGGER.error(e);
 		}
 		
@@ -55,35 +33,21 @@ public class BucketDAOImpl implements BucketDAO{
 	public Bucket read(int id) {
 		Bucket bucket = null;
 		try {
-			preparedStatement = connection.prepareStatement(READ_BY_ID);
-			preparedStatement.setInt(1, id);
-			ResultSet result = preparedStatement.executeQuery();
-			result.next();
-			
-			int userId = result.getInt("user_id");
-			int magazineId = result.getInt("magazine_id");
-			Date purchaseDate = result.getDate("purchase_date");
-			bucket = new Bucket(id, userId, magazineId, purchaseDate);
-		} catch (SQLException e) {
+			em.find(Bucket.class, id);
+		} catch (Exception e) {
 			LOGGER.error(e);
 		}		
 		
 		return bucket;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Bucket> readAll() {
 		List<Bucket> bucketRecords = new ArrayList<Bucket>();
 		try {
-			ResultSet result = connection.createStatement().executeQuery(READ_ALL);
-			while (result.next()) {
-				int id = result.getInt(1);
-				int userId = result.getInt("user_id");
-				int magazineId = result.getInt("magazine_id");
-				Date purchaseDate = result.getDate("purchase_date");
-				bucketRecords.add(new Bucket(id, userId, magazineId, purchaseDate));
-			}
-		} catch (SQLException e) {
+			bucketRecords = em.createQuery("FROM Bucket").getResultList();		
+		} catch (Exception e) {
 			LOGGER.error(e);
 		}	
 		
@@ -98,10 +62,11 @@ public class BucketDAOImpl implements BucketDAO{
 	@Override
 	public void delete(int id) {
 		try {
-			preparedStatement = connection.prepareStatement(DELETE_BY_ID);
-			preparedStatement.setInt(1, id);
-			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
+			Bucket bucket = read(id);
+			em.getTransaction().begin();
+			em.remove(bucket);
+			em.getTransaction().commit();
+		} catch (Exception e) {
 			LOGGER.error(e);
 		}	
 	}
