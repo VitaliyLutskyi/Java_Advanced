@@ -5,13 +5,13 @@ import java.util.List;
 
 public class StudentDaoImpl implements StudentDAO{
 	
-	private ArrayList<Student> students = new ArrayList<Student>();
+	private List<Student> students = new ArrayList<Student>();
 
 	public List<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(ArrayList<Student> students) {
+	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
 

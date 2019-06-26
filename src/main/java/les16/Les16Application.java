@@ -10,7 +10,7 @@ public class Les16Application {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctxt = SpringApplication.run(Les16Application.class, args);
 		
-		StudentDaoImpl studentDao = (StudentDaoImpl) ctxt.getBean("studentDao");
+		StudentDAO studentDao = (StudentDAO) ctxt.getBean("studentDao");
 		ConsoleLogger cl = (ConsoleLogger) ctxt.getBean("consoleLogger");
 		
 		studentDao.create(new Student(8, 21, "Olga"));
